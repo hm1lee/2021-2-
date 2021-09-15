@@ -1,4 +1,4 @@
-﻿
+
 
 
 
@@ -220,5 +220,169 @@ ex) 1010 (임의의 데이터) -> 0101 (보수 값으로 덮어쓰기) -> 랜덤
 - 기술적으로 매우 복잡한 가상환경을 제공함으로써 포렌식 관점에서 커다란 도전
 
 * 법적으로 관활권 문제 이야기
+
+﻿
+
+
+
+- - -﻿
+
+
+
+### 03. 파일 시스템 기초
+
+[파일 시스템 개요]
+
+
+
+\- 파일, 드라이브의 공간을 관리, 운영체제 안에 있음
+
+\- 역할 : **각 파일의 위치 및 속성 정보를 관리** (파일 시스템이 메타 정보를 관리)
+
+\- **FAT ( File Allocation Table)** 
+
+
+
+![img](https://getdata.com/img/misc/fat-recovery.png)
+
+
+
+```javascript
+<FAT 특징>
+1. FAT는 가장 바깥쪽 트랙에 기록한다.
+2. 파일명, 디렉토리명, 날짜, 시작 클러스터링 주소, 파일 속성 등이 저장이 되어있음
+3. Windows NT and 2000 이전 시스템에 사용
+﻿4. FAT12, FAT16, FAT 32, VFAT
+```
+
+\- **NTFS (New Tech File System)**
+
+최근 윈도우즈 운영체제에서 사용, FAT 보다 강력하고 다양한 기능 제공 (예, 대용량 지원, 자동 오류 복구, 향상된 보안)
+
+
+
+\- **HFS + (Hierarchical File System)** 
+
+Apple 제품에서 사용
+
+
+
+\- **Linux** 
+
+**Ext/2/3/4**
+
+
+
+\- 예) 드라이브 속성에서 현재 PC의 파일시스템 확인
+
+
+
+- - -
+
+    
+
+[ 파일시스템 - 클러스터와 섹터 ]
+
+
+
+\- 여러 개의 섹터가 모여 클러스터를 구성
+
+\- 데이터를 클러스터 단위로 저장 
+
+\- **Drive(file) slack 현상 초래**
+
+
+
+![img](https://blogfiles.pstatic.net/MjAyMTA5MTZfMjcg/MDAxNjMxNzE4NDcyODUw.WbWMSo1APPO9Qf0csmfQX7Kx8XEVdLUulcEvpI6n40Qg.zCGC-gmwiZl1E3j3PDjrJho0u6AZN6B3qRc6T4p78q4g.PNG.nm1lee/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2021-09-16_%EC%98%A4%EC%A0%84_12.07.49.png?type=w1)
+
+
+
+![img](https://blogfiles.pstatic.net/MjAyMTA5MTZfNTYg/MDAxNjMxNzE5MTM0NTEy.5zlj2t8DBp2gwtbqyToq7CnA1WbSprwrtUc2wew0aHwg.Yk53JMAMW-uPPio63R44Rb5XM8_gaO2E_2SwhptMU3Yg.PNG.nm1lee/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2021-09-16_%EC%98%A4%EC%A0%84_12.18.50.png?type=w1)
+
+
+
+
+
+\- 파란색 부분 : 컨텐츠가 저장된 부분 (used area)
+
+\- 회색 부분 : 섹터는 사용되었으나 컨텐츠가 저장되지 않은 부분
+
+\- 흰색 부분 : 섹터 조차 사용되지 않은 부분
+
+
+
+![img](https://blogfiles.pstatic.net/MjAyMTA5MTZfMTM0/MDAxNjMxNzE5MjY2OTY0.Qpd23iiMHG0lv9F0VXcpfdfpKjk9pDldYX30khbjlqkg.ZId7okHpKRLWhWXoa56AXdCtMFl2zYo3BOJr4P-vTLkg.PNG.nm1lee/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2021-09-16_%EC%98%A4%EC%A0%84_12.21.02.png?type=w1)
+
+
+
+\- 예시로, 해당 파일의 경우 디스크 할당 크기는 거의 4KB에 해당되지만, 크기는 1KB로 3KB가 낭비되고 있음을 알 수 있다.
+
+
+
+- - -
+
+[ 파일 시스템 - 슬랙 공간 ]
+
+
+
+![img](https://blogfiles.pstatic.net/MjAyMTA5MTZfNTYg/MDAxNjMxNzE5Mzg2OTM0.D2mM--_ap9b3h0bL2C-K7quZrrhkEyrUpJCI3gQXysEg.x1q-qJBovje_WMufFzy9X_u_0lRk-gixURvrYQDC2xUg.PNG.nm1lee/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2021-09-16_%EC%98%A4%EC%A0%84_12.23.03.png?type=w1)
+
+
+
+\- 슬랙 공간 = 낭비 공간
+
+\- 전체 저장 공간 : 64 섹터 x 512 byte = 32 KB
+
+\- 실제 저장 공간 : 5KB (5000 byte) 파일 저장하는 경우? 10개의 섹터가 필요
+
+\- RAM Slack : 5120byte - 5000byte = 120byte
+
+\- File Slack : 32,768 - 5,120 = 27,648 byte (아예 사용하지 않은 슬랙 공간)
+
+\- 파일 조각 모음 : 컴퓨터 속도 향상 및 저장 공간 확보를 위해서 사용하는 방법이지만, 범죄에 사용되기도 한다.
+
+
+
+- - -
+
+[ 파일시스템 - 파일 삭제 ]
+
+\- 파일 시스템은 **책의 인덱스와 유사한 기능**
+
+\- 파일 삭제만으로는 데이터를 완전히 삭제할 수 없음 -> 파일 삭제의 의미는 **파일 시스템의 인덱스 부분만 수정, 삭제하는 것이기 때문에 원본은 남아있게** 되는 것이다!
+
+```javascript
+<파일 삭제하는 경우 변화>
+
+- 디렉토리 엔트리에(목차 내용) '파일 삭제'로 표시
+- 파일 이름 첫 글자를 HEX 'E5' 문자로 대체
+- FAT chain을 '0'으로 세팅
+
+하지만 실제 데이터는? -> 디스크 드라이브에 고대로 존재한다!
+```
+
+
+
+- - -
+
+[ 파일 시스템 - 할당 공간과 비할당 공간 ]
+
+\- 파일시스템에서 관리하지 않는 공간
+
+윈도우는 할당되지 않은 공간에 대해서는 데이터를 볼 수 없음 (파일 시스템에서 볼 수 없음)
+
+\- 비할당 공간이지만 빈 공간은 아님
+
+**- 하드 드라이브의 숨겨진 영역**
+
+1. 호스트 보호 영역 (Host Protected Area)
+
+2. 디바이스 설정 오버레이 영역 (Device Configuration Overlays)
+
+   -> 해당 공간에 해커가 악의적으로 데이터를 숨겨버리면 포렌식으로 찾기가 어려워진다 ㅠ_ㅠ
+
+
+
+
 
 ﻿
