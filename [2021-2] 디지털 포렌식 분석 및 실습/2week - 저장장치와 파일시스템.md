@@ -8,6 +8,8 @@
 
 ### 01. 문자의 표현과 파일 카빙
 
+<br>
+<br>
 
 
 **[ 문자, 숫자의 표현 ]**
@@ -25,6 +27,8 @@
 ![img](https://media.vlpt.us/images/exploit017/post/9eb5ba8c-326f-4ede-9706-7c0d260c6301/image.png)
 
 
+<br>
+<br>
 
 (2) Hexa decimal (16진수) 표현
 
@@ -45,6 +49,8 @@
 
 
 
+<br>
+<br>
 
 
 **[ 파일 확장자와 파일 시그니처 ]**
@@ -65,7 +71,7 @@
 
 
 
-
+- - -
 
 
 
@@ -81,6 +87,8 @@
 
 https://blog.daum.net/dasomcap/911
 
+<br>
+<br>
 
 
 **- 반도체 트랜지스터 (플래시)**
@@ -99,6 +107,9 @@ https://blog.daum.net/dasomcap/911
 
 (SSD)
 
+<br>
+<br>
+
 
 
 **- 빛의 반사 (CD, DVD)**
@@ -106,6 +117,8 @@ https://blog.daum.net/dasomcap/911
 ![img](https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Interference-colors.jpg/1200px-Interference-colors.jpg)
 
 
+<br>
+<br>
 
 
 
@@ -125,7 +138,8 @@ https://blog.daum.net/dasomcap/911
 
 \- 슬랙 공간을 복구하여 증거를 수집
 
-
+<br>
+<br>
 
 
 
@@ -146,6 +160,7 @@ ex) 1010 (임의의 데이터) -> 0101 (보수 값으로 덮어쓰기) -> 랜덤
 \- BCWipe, MooO, CCleaner 등의 도구를 사용 (실습시에 MooO를 사용할 예정...)
 
 
+<br>
 
 2. 포맷(High Level)도 소프트웨어 파기에 해당될까? 
 
@@ -155,6 +170,8 @@ ex) 1010 (임의의 데이터) -> 0101 (보수 값으로 덮어쓰기) -> 랜덤
 
 
 
+<br>
+<br>
 
 
 [ SSD와 디지털 포렌식 ]
@@ -188,6 +205,8 @@ ex) 1010 (임의의 데이터) -> 0101 (보수 값으로 덮어쓰기) -> 랜덤
 \- 가비지 컬렌션이 증거 수집 동안 또는 이후 이루어지면 해쉬값의 불일치 발생
 
 
+<br>
+<br>
 
 
 
@@ -203,7 +222,7 @@ ex) 1010 (임의의 데이터) -> 0101 (보수 값으로 덮어쓰기) -> 랜덤
 
 
 
-
+<br>
 
 [ 다양한 컴퓨팅 환경에서의 포렌식 ]
 
@@ -221,11 +240,11 @@ ex) 1010 (임의의 데이터) -> 0101 (보수 값으로 덮어쓰기) -> 랜덤
 
 * 법적으로 관활권 문제 이야기
 
-﻿
 
 
 
-- - -﻿
+
+- - -
 
 
 
