@@ -1,0 +1,402 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "week5.ipynb",
+      "provenance": [],
+      "collapsed_sections": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "vNZJo0GZMo-Z"
+      },
+      "source": [
+        "## 과제 2"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "FMFLlTqmKbLz"
+      },
+      "source": [
+        "import requests\n",
+        "import bs4\n",
+        "\n",
+        "url = \"https://news.v.daum.net/v/20210921190103948\"\n",
+        "res = requests.get(url)\n",
+        "html_text = res.text\n",
+        "soup = bs4.BeautifulSoup(html_text, \"html.parser\")"
+      ],
+      "execution_count": 1,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ffvng6kKKyj-",
+        "outputId": "e3345b46-9524-4a62-b15b-738507383d22"
+      },
+      "source": [
+        "tag_list = soup.select(\".ir_wa\") # ir_wa 클래스를 하고 있는 태그를 추출\n",
+        "tag_list"
+      ],
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[<span class=\"ir_wa\">뉴스</span>,\n",
+              " <span class=\"ir_wa\">연예</span>,\n",
+              " <span class=\"ir_wa\">스포츠</span>,\n",
+              " <span class=\"ir_wa\">검색</span>,\n",
+              " <span class=\"ir_wa\">홈</span>,\n",
+              " <span class=\"ir_wa\">사회</span>,\n",
+              " <span class=\"ir_wa\">정치</span>,\n",
+              " <span class=\"ir_wa\">경제</span>,\n",
+              " <span class=\"ir_wa\">국제</span>,\n",
+              " <span class=\"ir_wa\">문화</span>,\n",
+              " <span class=\"ir_wa\">IT</span>,\n",
+              " <span class=\"ir_wa\">랭킹</span>,\n",
+              " <span class=\"ir_wa\">연재</span>,\n",
+              " <span class=\"ir_wa\">포토</span>,\n",
+              " <span class=\"ir_wa\">TV</span>,\n",
+              " <span class=\"ir_wa\">팩트체크</span>]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 5
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gJnqWglmK_WG",
+        "outputId": "e4f2a855-d476-4926-a7ce-101f1705d3ee"
+      },
+      "source": [
+        "# > 사이는 띄어쓰기\n",
+        "# 클래스 값 .로 지정해주기 \n",
+        "# 원하는 11개의 값 추출 가능 \n",
+        "\n",
+        "# 답 2-1\n",
+        "tag_list = soup.select(\"ul.gnb_comm > li > a.link_gnb > span.ir_wa\") \n",
+        "tag_list"
+      ],
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[<span class=\"ir_wa\">홈</span>,\n",
+              " <span class=\"ir_wa\">사회</span>,\n",
+              " <span class=\"ir_wa\">정치</span>,\n",
+              " <span class=\"ir_wa\">경제</span>,\n",
+              " <span class=\"ir_wa\">국제</span>,\n",
+              " <span class=\"ir_wa\">문화</span>,\n",
+              " <span class=\"ir_wa\">IT</span>,\n",
+              " <span class=\"ir_wa\">랭킹</span>,\n",
+              " <span class=\"ir_wa\">연재</span>,\n",
+              " <span class=\"ir_wa\">포토</span>,\n",
+              " <span class=\"ir_wa\">TV</span>]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 11
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-1vsie9_LXUA",
+        "outputId": "25918590-5bdb-4d2e-8126-c5b9165230df"
+      },
+      "source": [
+        "# 답 2-2\n",
+        "tag_list = soup.select(\".gnb_comm > li > a.link_gnb > span.ir_wa\") \n",
+        "tag_list"
+      ],
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[<span class=\"ir_wa\">홈</span>,\n",
+              " <span class=\"ir_wa\">사회</span>,\n",
+              " <span class=\"ir_wa\">정치</span>,\n",
+              " <span class=\"ir_wa\">경제</span>,\n",
+              " <span class=\"ir_wa\">국제</span>,\n",
+              " <span class=\"ir_wa\">문화</span>,\n",
+              " <span class=\"ir_wa\">IT</span>,\n",
+              " <span class=\"ir_wa\">랭킹</span>,\n",
+              " <span class=\"ir_wa\">연재</span>,\n",
+              " <span class=\"ir_wa\">포토</span>,\n",
+              " <span class=\"ir_wa\">TV</span>]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 12
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "dMATs8-IMKHE",
+        "outputId": "169fb994-8d3b-4a63-cff4-4d094960072d"
+      },
+      "source": [
+        "# 답 2-3\n",
+        "tag_list = soup.select(\".gnb_comm > li > a.link_gnb > .ir_wa\") \n",
+        "tag_list"
+      ],
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[<span class=\"ir_wa\">홈</span>,\n",
+              " <span class=\"ir_wa\">사회</span>,\n",
+              " <span class=\"ir_wa\">정치</span>,\n",
+              " <span class=\"ir_wa\">경제</span>,\n",
+              " <span class=\"ir_wa\">국제</span>,\n",
+              " <span class=\"ir_wa\">문화</span>,\n",
+              " <span class=\"ir_wa\">IT</span>,\n",
+              " <span class=\"ir_wa\">랭킹</span>,\n",
+              " <span class=\"ir_wa\">연재</span>,\n",
+              " <span class=\"ir_wa\">포토</span>,\n",
+              " <span class=\"ir_wa\">TV</span>]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 13
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "G5-kloU7MSVx",
+        "outputId": "b86fcb30-304c-4219-848e-81a4b3235701"
+      },
+      "source": [
+        "# 답 2-4\n",
+        "tag_list = soup.select(\".gnb_comm > li > .link_gnb > .ir_wa\") \n",
+        "tag_list"
+      ],
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[<span class=\"ir_wa\">홈</span>,\n",
+              " <span class=\"ir_wa\">사회</span>,\n",
+              " <span class=\"ir_wa\">정치</span>,\n",
+              " <span class=\"ir_wa\">경제</span>,\n",
+              " <span class=\"ir_wa\">국제</span>,\n",
+              " <span class=\"ir_wa\">문화</span>,\n",
+              " <span class=\"ir_wa\">IT</span>,\n",
+              " <span class=\"ir_wa\">랭킹</span>,\n",
+              " <span class=\"ir_wa\">연재</span>,\n",
+              " <span class=\"ir_wa\">포토</span>,\n",
+              " <span class=\"ir_wa\">TV</span>]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 14
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "BkUVMSdBMZFS",
+        "outputId": "17f9a7a5-8a8c-46bc-ea64-dac0285554a7"
+      },
+      "source": [
+        "# 답 2-5\n",
+        "\n",
+        "# 답 2-4\n",
+        "tag_list = soup.select(\".gnb_comm > li > a > .ir_wa\") \n",
+        "tag_list"
+      ],
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[<span class=\"ir_wa\">홈</span>,\n",
+              " <span class=\"ir_wa\">사회</span>,\n",
+              " <span class=\"ir_wa\">정치</span>,\n",
+              " <span class=\"ir_wa\">경제</span>,\n",
+              " <span class=\"ir_wa\">국제</span>,\n",
+              " <span class=\"ir_wa\">문화</span>,\n",
+              " <span class=\"ir_wa\">IT</span>,\n",
+              " <span class=\"ir_wa\">랭킹</span>,\n",
+              " <span class=\"ir_wa\">연재</span>,\n",
+              " <span class=\"ir_wa\">포토</span>,\n",
+              " <span class=\"ir_wa\">TV</span>]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 15
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "gydzY_7bMrD9"
+      },
+      "source": [
+        "## 과제 3\n",
+        "\n",
+        "- '경제' 메뉴를 감싸고 있는 <span> 태그를 반환하는 tag 객체를 생성하려고 한다.\n",
+        "- css 선택자를 쓰고, 그 중 2개는 nth-child()와 nth-of-type()을 각각 사용한 css선택자가 포함되도록 하시오.\n",
+        "- tag = soup.select_one(\"---\")\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "2wt8uuWmMecq"
+      },
+      "source": [
+        "import requests\n",
+        "import bs4\n",
+        "\n",
+        "url = \"https://news.v.daum.net/v/20210921190103948\"\n",
+        "res = requests.get(url)\n",
+        "html_text = res.text\n",
+        "soup = bs4.BeautifulSoup(html_text, \"html.parser\")"
+      ],
+      "execution_count": 16,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "I5mSC7MXNyG1",
+        "outputId": "0cd90fee-ab07-465d-e288-3f05f1f63bc8"
+      },
+      "source": [
+        "# 안되는 코드\n",
+        "# tag = soup.select_one(\"ul.gnb_comm > li > a.link_gnb > span.ir_wa : nth-child(4)\")\n",
+        "\n",
+        "# 가능한 코드 \n",
+        "# nth-child(1)\n",
+        "# nth-last-child(2)\n",
+        "# nth-of-type(1)\n",
+        "# nth-last-of-type(2)\n",
+        "# first-child\n",
+        "# first-of-type\n",
+        "\n"
+      ],
+      "execution_count": 22,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "<span class=\"ir_wa\">홈</span>"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 22
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "040C_p3gN68L",
+        "outputId": "309e14ac-af37-4386-9ab0-697531f7058c"
+      },
+      "source": [
+        "tag = soup.select_one(\"ul.gnb_comm > li:nth-of-type(4) > a.link_gnb > span.ir_wa\")\n",
+        "tag"
+      ],
+      "execution_count": 32,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "<span class=\"ir_wa\">경제</span>"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 32
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "N8D8txGtQDdg"
+      },
+      "source": [
+        "답 \n",
+        "- \"ul.gnb_comm > li:nth-child(4) > a.link_gnb > span.ir_wa\"\n",
+        "- \"ul.gnb_comm > li:nth-of-type (4) > a.link_gnb > span.ir_wa\"\n",
+        "- \"ul.gnb_comm > li:nth-last-of-type (8) > a.link_gnb > span.ir_wa\"\n",
+        "- \"ul.gnb_comm > li:nth-last-child(8) > a.link_gnb > span.ir_wa\"\n",
+        "- \".gnb_comm > li:nth-of-type (4) > a.link_gnb > span.ir_wa\"\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "baSdvwHpO_Lm"
+      },
+      "source": [
+        ""
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
